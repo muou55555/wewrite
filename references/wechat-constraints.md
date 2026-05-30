@@ -69,8 +69,11 @@ padding, margin, border
 width, height, max-width, max-height
 text-align, line-height, letter-spacing
 border-radius, box-shadow
-display, flex, justify-content, align-items
+display: block/table/table-cell/inline-block
+position: relative/absolute  /* fixed/sticky 不支持 */
 ```
+
+> ⚠️ **`display:flex` 实测注意**：PC 微信支持，但手机微信 WebView 对 flex 子属性（`align-items`/`justify-content`）支持不稳定，生产环境中应使用 `display:table` 或 `position:absolute` 替代。
 
 **本工具的策略**:
 - 只使用微信支持的CSS属性
@@ -257,7 +260,32 @@ GitHub仓库：https://github.com/user/repo
 - 表格、代码块自适应
 - 图片宽度 100% 自适应
 
-### 4.3 常见兼容性问题
+### 4.3 PC 端 vs 手机端适配规则（实测总结）
+
+生成自定义 HTML 时，以下规则比 `@media` 查询更重要，因为微信剥离 `<style>` 块后媒体查询完全失效：
+
+| 场景 | ❌ 避免 | ✅ 使用 |
+|------|---------|---------|
+| 两列布局（徽章+正文） | `display:flex` | `position:relative` + `position:absolute` |
+| 通用两列布局 | `display:flex` | `display:table` + `display:table-cell` |
+| 布局容器 | `<div>` | `<section>`（手机端盒模型更稳定） |
+| 边框声明 | `border-left:4px solid #C8102E` | 拆为三条：`border-left-width` / `border-left-style` / `border-left-color` |
+| 序号列表 | `<table>` 或 `<ul>/<ol>` | `position:relative` 父容器 + `position:absolute` 徽章 + `padding-left` 文字区 |
+
+**序号徽章（最可靠写法）**：
+```html
+<section style="position:relative;padding-left:38px;margin:0 0 14px 0;min-height:30px;">
+  <span style="position:absolute;left:0;top:2px;width:26px;height:26px;
+               line-height:26px;text-align:center;background:#C8102E;
+               color:#ffffff;font-family:'黑体','SimHei',sans-serif;
+               font-size:13px;font-weight:bold;display:block;">一</span>
+  <p style="font-size:15px;line-height:2;color:#1A1A1A;margin:0;">正文内容</p>
+</section>
+```
+
+---
+
+### 4.4 常见兼容性问题
 
 **问题1：颜色显示不一致**
 ```css

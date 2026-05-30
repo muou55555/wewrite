@@ -1,0 +1,212 @@
+name: "amber-editorial"
+description: "琥珀深报：深石墨+琥珀金，编辑杂志长文风格，适合深度报道、调查类和社区治理内容"
+colors:
+  primary: "#C8853A"
+  secondary: "#3A4A5C"
+  text: "#252530"
+  text_light: "#5C5A6A"
+  background: "#FBF9F6"
+  code_bg: "#F4F1EC"
+  code_color: "#3A4A5C"
+  quote_border: "#C8853A"
+  quote_bg: "#1C1C28"
+  border_radius: "4px"
+  darkmode:
+    background: "#111118"
+    text: "#D8D0C4"
+    text_light: "#8A8098"
+    primary: "#D99A50"
+    code_bg: "#1E1C28"
+    code_color: "#A8B8C8"
+    quote_bg: "#0D0D14"
+    quote_border: "#D99A50"
+base_css: |
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #252530;
+    background: #FBF9F6;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+    word-wrap: break-word;
+  }
+
+  h1 {
+    font-family: Georgia, "Songti SC", "SimSun", serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1C1C28;
+    margin: 32px 0 16px 0;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #C8853A;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-family: Georgia, "Songti SC", "SimSun", serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1C1C28;
+    margin: 36px 0 14px 0;
+    padding: 8px 0 8px 14px;
+    border-left: 4px solid #C8853A;
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #3A4A5C;
+    margin: 24px 0 12px 0;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #3A4A5C;
+    margin: 20px 0 10px 0;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #252530;
+    margin: 14px 0;
+  }
+
+  strong {
+    font-weight: 700;
+    color: #C8853A;
+  }
+
+  em {
+    font-style: italic;
+    font-family: Georgia, "Songti SC", serif;
+    color: #3A4A5C;
+  }
+
+  code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 14px;
+    background: #F4F1EC;
+    color: #3A4A5C;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #E8E3DC;
+  }
+
+  pre {
+    background: #F4F1EC;
+    color: #3A4A5C;
+    padding: 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.6;
+    border: 1px solid #E8E3DC;
+  }
+
+  pre code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 14px;
+    background: none;
+    color: #3A4A5C;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  blockquote {
+    background: #1C1C28;
+    border-left: 4px solid #C8853A;
+    margin: 20px 0;
+    padding: 16px 20px 16px 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  blockquote p {
+    margin: 6px 0;
+    color: #D8D0C4;
+    font-style: italic;
+    font-family: Georgia, "Songti SC", serif;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  ul {
+    padding-left: 24px;
+    margin: 12px 0;
+  }
+
+  ol {
+    padding-left: 24px;
+    margin: 12px 0;
+  }
+
+  li {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #252530;
+    margin: 6px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+
+  thead {
+    background: #1C1C28;
+  }
+
+  th {
+    background: #1C1C28;
+    color: #C8853A;
+    font-weight: 600;
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid #1C1C28;
+    font-family: Georgia, "Songti SC", serif;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 10px 14px;
+    border: 1px solid #E8E3DC;
+    color: #252530;
+  }
+
+  tr:nth-child(even) {
+    background: #F4F1EC;
+  }
+
+  tr {
+    background: #FBF9F6;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 28px auto;
+    border-radius: 4px;
+  }
+
+  a {
+    color: #C8853A;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid #E8E3DC;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #E8E3DC;
+    margin: 32px 0;
+  }
