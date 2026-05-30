@@ -410,6 +410,22 @@ background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
 2. 或将链接改为纯文本显示
 3. 或使用"阅读原文"链接
 
+### 问题6：API 推送报错 errcode=45110（author 超长）
+
+**现象**：`create_draft` 返回 `{"errcode":45110,"errmsg":"invalid media value hint"}`，文章推送失败。
+
+**原因**：微信 API 的 `author` 字段限制约 **8 个汉字（16 字节）**，超出即报错。
+
+**解决方案**：缩短 author 字符串。
+
+```python
+# ❌ 超长
+author = "栖海澐颂业主监督组"   # 9 个汉字，报 45110
+
+# ✅ 缩短
+author = "业主监督组"            # 5 个汉字，正常
+```
+
 ---
 
 ## 7. 最佳实践总结
