@@ -28,7 +28,7 @@
 | 文章写作 | 真实信息锚定 + 风格注入 + 编辑锚点 | `references/writing-guide.md` |
 | SEO 优化 | 标题策略 / 摘要 / 关键词 / 标签 | `references/seo-rules.md` |
 | 视觉 AI | 封面 3 创意 + 内文 3-6 配图 | `toolkit/image_gen.py` |
-| 排版发布 | 16+ 主题 + 微信兼容修复 + 暗黑模式 | `toolkit/cli.py` |
+| 排版发布 | 18+ 主题 + 微信兼容修复 + 暗黑模式 | `toolkit/cli.py` |
 | 效果复盘 | 微信数据分析 API 回填阅读数据 | `references/effect-review.md` |
 | 范文风格库 | SICO 式 few-shot：从你的文章提取风格指纹，写作时注入 | `scripts/extract_exemplar.py` |
 | 风格飞轮 | 学习你的修改，越用越像你 | `references/learn-edits.md` |
@@ -66,7 +66,7 @@ WeWrite 的目标不是"骗过 AI 检测"，而是**写出值得读的文章**�
 
 ## 排版引擎
 
-### 16 个主题
+### 18 个主题
 
 ```bash
 # 浏览器内预览所有主题（并排对比 + 一键复制）
@@ -83,6 +83,8 @@ python3 toolkit/cli.py themes
 | 文艺 | `warm-editorial`、`sspai`、`ink`、`elegant-rose` |
 | 商务 | `bold-navy`、`minimal-gold`、`bold-green` |
 | 风格 | `bauhaus`、`focus-red`、`midnight` |
+| 深度 | `amber-editorial` ⭐ — 琥珀深报（深石墨 + 琥珀金，编辑杂志长文风格，适合调查/深度报道） |
+| 政务 | `gov-official` — 政务风（中国红 + 仿宋/黑体，政府公文格式，适合信访件/倡议书/社区治理） |
 
 所有主题均支持微信暗黑模式。
 
@@ -96,6 +98,11 @@ python3 toolkit/cli.py themes
 | 原生列表不稳定 | `<ul>/<ol>` 转样式化 `<section>` |
 | 暗黑模式颜色反转 | 注入 `data-darkmode-*` 属性 |
 | `<style>` 被剥离 | 所有 CSS 内联注入 |
+| 手机端 `flex` 布局错位 | 改用 `position:absolute`（序号徽章）或 `display:table`（两栏布局） |
+| 手机端 `border` 简写不渲染 | `border-left` 拆成三条：`-width` / `-style` / `-color` |
+| 推送 API errcode=45110 | `author` 字段超长（限约 8 个汉字），缩短即可 |
+
+详细规则和代码示例见 `references/wechat-constraints.md`。
 
 ### 容器语法
 
@@ -195,7 +202,7 @@ wewrite/
 │   ├── publisher.py            # 微信草稿箱 API + 小绿书图片帖
 │   ├── wechat_api.py           # access_token / 图片上传
 │   ├── image_gen.py            # AI 图片生成（9 provider，自动 fallback）
-│   └── themes/                 # 16+ 排版主题（含暗黑模式，可从文章学习新增）
+│   └── themes/                 # 18+ 排版主题（含暗黑模式，可从文章学习新增）
 │
 ├── personas/                 # 5 套写作人格预设（含朱雀实测数据）
 │
@@ -206,8 +213,8 @@ wewrite/
 │   ├── topic-selection.md      # 选题评估规则
 │   ├── seo-rules.md            # 微信 SEO 规则
 │   ├── visual-prompts.md       # 视觉 AI 提示词规范
-│   ├── wechat-constraints.md   # 微信平台限制 + 自动修复
-│   ├── style-template.md       # 风格配置字段 + 16 主题列表
+│   ├── wechat-constraints.md   # 微信平台限制 + 自动修复 + PC/手机端兼容规则
+│   ├── style-template.md       # 风格配置字段 + 18 主题列表
 │   ├── exemplar-seeds.yaml     # 通用人类写作模式种子（无范文库时的 fallback）
 │   ├── exemplars/              # 用户范文风格库（自动生成，不入 git）
 │   ├── onboard.md              # 首次设置流程
@@ -236,7 +243,7 @@ Step 5  SEO 优化 → 质量验证
   ↓
 Step 6  视觉 AI（封面 + 内文配图）
   ↓
-Step 7  预检 + 排版 + 发布（16 主题 + 微信兼容修复）
+Step 7  预检 + 排版 + 发布（18 主题 + 微信兼容修复）
   ↓
 Step 8  写入历史 → 回复用户（含编辑建议 + 飞轮提示）
 ```
